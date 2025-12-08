@@ -1,0 +1,151 @@
+/* Reset some default spacing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Overall page styling */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(145deg, #0f3c70, #0b2550);
+  /* centre everything */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+/* Main game container */
+.game-container {
+  background: linear-gradient(145deg, #008dff, #006fff);
+  padding: 20px 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Game title */
+.game-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  color: #ff9b00;
+}
+
+/* Controls row: start button, score, timer */
+.game-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Start button styling */
+#start-button {
+  padding: 12px 28px;        /* bigger button */
+  border-radius: 12px;       /* rounded corners (but not a pill) */
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #ff9b00;       /* blue button */
+  color: #ffffff;
+  box-shadow: 0 4px 0 #104174;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0px;       /* space between button and Score text */
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+#start-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #104174;
+  text-align: center;
+}
+
+/* Big score text */
+.score-text {
+  font-size: 2.5rem;         /* large like in your screenshot */
+  margin-bottom: 20px;
+  margin-top: 20px; 
+  text-align: center;     /* space before timer */
+}
+
+/* Big timer text */
+.timer-text {
+  font-size: 1.5rem;
+  margin-bottom: 20px; 
+  text-align: center;
+}
+/* Hide elements when needed */
+.hidden {
+  display: none;
+}
+
+/* Final message styling (shares the same line as the timer) */
+.final-message {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Make sure the numbers are white too */
+.score-text span,
+.timer-text span {
+  color: #ff9b00;
+}
+
+/* Game board: grid of holes */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 15px;
+  margin-bottom: 16px;
+}
+
+/* Individual hole */
+.hole {
+  background: radial-gradient(circle at 30% 30%, #1e90ff, #0b2550);
+  width: 100%;
+  padding-top: 100%;  /* Makes the div a responsive square */
+  border-radius: 50%; /* Turns the square into a circle */
+  position: relative; /* Needed to position the image inside */
+  overflow: hidden;
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Default state: hidden and centred */
+.target-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);  /* centred + hidden */
+  transform-origin: center;
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease-out;
+}
+
+/* POP-IN effect: when the hole is "active", the image scales up */
+.hole.active .target-image {
+  transform: translate(-50%, -50%) scale(1);  /* centred + visible */
+}
+
+/* Apply a red border when an image is clicked */
+.target-image.clicked {
+  border: 4px solid red;
+  box-sizing: border-box; /* keep the image from growing when the border appears */
+}
+.hidden {
+  display: none !important;
+}
+

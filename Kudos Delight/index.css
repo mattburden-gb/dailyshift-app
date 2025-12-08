@@ -1,0 +1,390 @@
+:root {
+  /* Growth Bridge colour tokens */
+  --gb-bg: #ffffff;
+  --gb-surface-dark: #19234a;
+  --gb-surface-muted: #dcdcdc;
+  --gb-text-main: #696969;
+  --gb-text-on-dark: #ffffff;
+  --gb-accent: #2f4f4f;
+  --gb-accent-alt: #696969;
+  --gb-border-subtle: #dcdcdc;
+}
+
+/* Reset-lite */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background: linear-gradient(180deg, #101832 0%, #19234a 50%, #0d1323 100%);
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+  color: var(--gb-text-on-dark);
+}
+
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.container {
+  background-color: var(--gb-surface-dark);
+  color: var(--gb-text-on-dark);
+  max-width: 420px;      /* good for phones, still fine on desktop */
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 22px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* On slightly larger screens (tablets/desktop), give it a bit more breathing room */
+@media (min-width: 768px) {
+  .container {
+    max-width: 520px;
+    padding: 32px 28px;
+  }
+}
+
+/* Brand: logo above title, centred */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+/* Title */
+.brand h1 {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 2.3rem; /* within Growth Bridge H1 range */
+  color: var(--gb-text-on-dark); /* white on dark card */
+  margin: 0;
+  text-align: center;
+}
+
+/* Logo image */
+.brand-logo {
+  height: 40px;            /* adjust if needed */
+  width: auto;
+  display: block;
+}
+
+
+.icon {
+  font-size: 2.3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gb-accent);
+}
+.subtitle {
+  font-family: var(--gb-font-body, "Roboto", sans-serif);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: -6px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.display {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--gb-text-on-dark);
+  padding: 18px 16px;
+  border-radius: 8px;
+  min-height: 80px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.fade-in {
+  animation: fadeIn 0.45s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 22px;
+}
+
+/* Base button style */
+button,
+.btn-secondary {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.2rem;
+  border-radius: 48px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+/* Phones: make them full width */
+.actions button {
+  flex: 1 1 calc(50% - 0.75rem);
+}
+
+@media (max-width: 460px) {
+  .actions button {
+    flex: 1 1 100%;
+  }
+}
+
+/* Default: white buttons for the three + navy for Gratitude, as we had */
+#courageButton,
+#positivityButton,
+#appreciationButton {
+  background-color: var(--gb-text-on-dark); /* white */
+  color: var(--gb-surface-dark);            /* navy */
+}
+
+#gratitudeButton {
+  background-color: var(--gb-surface-dark);
+  color: var(--gb-text-on-dark);
+  border: 1px solid var(--gb-text-on-dark);
+}
+
+
+/* Hover / focus */
+button:hover,
+button:focus-visible {
+  filter: brightness(0.92);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+  transform: translateY(-1px);
+}
+
+button:active {
+  filter: brightness(0.9);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(0);
+}
+/* Gratitude section (hidden until Gratitude button is pressed) */
+.gratitude {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.gratitude-title {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 1.1rem;
+  color: var(--gb-text-on-dark);
+  margin: 0 0 0.25rem;
+}
+
+.gratitude-subtext {
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Inputs reuse existing input style, but look good on dark */
+.gratitude-input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--gb-text-on-dark);
+  font-size: 0.95rem;
+}
+
+.gratitude-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.gratitude-input:focus {
+  outline: none;
+  border-color: var(--gb-text-on-dark);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+/* Actions inside gratitude panel */
+.gratitude-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Gratitude Reminder button: secondary style (outline) */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--gb-text-on-dark);
+  border: 1px solid var(--gb-text-on-dark);
+  min-width: 150px;
+}
+
+/* Form layout */
+form {
+  margin-top: 16px;
+}
+
+label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+/* Inputs */
+input[type="text"] {
+  padding: 0.75rem 0.75rem;
+  margin: 0.35rem 0 0.75rem;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--gb-border-subtle);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--gb-accent);
+  box-shadow: 0 0 0 2px rgba(47, 79, 79, 0.15);
+}
+
+/* Form submit button a bit smaller */
+form button[type="submit"] {
+  margin-top: 0.25rem;
+  padding: 0.5rem 1.5rem; /* secondary size but still primary style */
+  font-size: 0.95rem;
+}
+
+/* Success message */
+#successMessage {
+  background: rgba(82, 255, 168, 0.15);
+  color: #c1ffd7;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.95rem;
+  transition: opacity 0.3s ease;
+}
+
+/* Utility */
+.hidden {
+  display: none;
+}
+/* --- DARK THEME CARD VERSION --- */
+
+/* Container becomes dark navy */
+.container {
+  background-color: var(--gb-surface-dark);
+  color: var(--gb-text-on-dark);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Heading + icon reversed to white */
+h1 {
+  color: var(--gb-text-on-dark);
+}
+
+.icon {
+  color: var(--gb-text-on-dark);
+}
+
+/* Display area: light-on-dark variant */
+.display {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--gb-text-on-dark);
+}
+
+/* --- BUTTONS INVERTED --- */
+
+/* Primary button: white background, navy text */
+button {
+  background-color: var(--gb-text-on-dark);   /* white */
+  color: var(--gb-surface-dark);              /* navy text */
+}
+
+/* Hover: subtle darkening */
+button:hover,
+button:focus-visible {
+  filter: brightness(0.92);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* Secondary button: outline style on dark */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--gb-text-on-dark); /* white text */
+  border: 1px solid var(--gb-text-on-dark);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Inputs on dark surface */
+input[type="text"] {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--gb-text-on-dark);
+}
+
+input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+input[type="text"]:focus {
+  border-color: var(--gb-text-on-dark);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+/* Success message on dark theme */
+#successMessage {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--gb-text-on-dark);
+}
+
+/* Small screens: loosen things a bit */
+@media (max-width: 480px) {
+  .container {
+    padding: 24px 18px 22px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .display {
+    font-size: 0.95rem;
+  }
+}
+
+

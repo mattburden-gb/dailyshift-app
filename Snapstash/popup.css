@@ -1,0 +1,123 @@
+/* Basic page styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 10px;
+  min-width: 300px;
+}
+h1, h2 {
+  color: #03045e;
+}
+/* Main title */
+h1 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+/* Section title */
+h2 {
+  font-size: 16px;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+/* Sub-headings for each category */
+h3 {
+  font-size: 14px;
+  margin: 6px 0 4px;
+}
+
+/* Preview text */
+#item-preview {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+/* Controls row: dropdown + button side-by-side */
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.controls select {
+  flex: 1;
+}
+
+/* Save button styling */
+#save-btn {
+  padding: 6px 10px;
+  background-color: #00A5cf;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+#save-btn:hover {
+  background-color: #08b4df;
+}
+
+/* Container for all category sections */
+.categories-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Space between each category block */
+}
+
+/* Individual category block */
+.category-section {
+  border-top: 1px solid #ddd;
+  padding-top: 4px;
+  display: none;
+}
+
+/* Lists in each category */
+.category-list {
+  list-style: none;  /* Remove bullets */
+  padding: 0;
+  margin: 0;
+}
+
+/* Each list item row: content on left, delete on right */
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+/* Wrap for link text (left side) */
+.list-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Delete button – icon only */
+.delete-btn {
+  background: none;
+  border: none;
+  color: #555;       /* dark grey by default */
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* On hover, turn the delete icon red */
+.delete-btn:hover {
+  color: #c00;
+}
+
+/* Make links a little more obvious */
+.category-list a {
+  text-decoration: none;
+}
+
+.category-list a:hover {
+  text-decoration: underline;
+}
+
+
+

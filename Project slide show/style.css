@@ -1,0 +1,163 @@
+/* 
+  Basic reset to remove default browser spacing 
+  so we can control layout more easily.
+*/
+* {
+  box-sizing: border-box; /* Makes width/height calculations more intuitive */
+  margin: 0;
+  padding: 0;
+}
+
+/* Page background and base font styling */
+body {
+  font-family: Arial, sans-serif;   /* Simple, readable font */
+  background: #111827;             /* Dark background colour for contrast */
+  color: #f9fafb;                  /* Light text colour */
+  display: flex;                   /* Centre the portfolio section on the page */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;               /* Make the body at least full viewport height */
+}
+
+/* Wrapper for the whole portfolio section */
+.portfolio-section {
+  width: 100%;
+  max-width: 960px;                /* Keeps the slider from becoming too wide */
+  padding: 20px;
+}
+
+/* Heading for the portfolio section */
+.portfolio-title {
+  text-align: center;              /* Centre the text horizontally */
+  margin-bottom: 20px;             /* Space between the title and the slider */
+  font-size: 2rem;
+}
+
+/* Main slider container */
+.slider {
+  position: relative;              /* Needed so children with absolute positioning work correctly */
+  width: 100%;
+  overflow: hidden;                /* Hides anything that spills outside the slider boundaries */
+  border-radius: 12px;             /* Rounded corners around the slider */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Soft shadow for depth */
+  background: #000;                /* Fallback background behind images */
+}
+
+/* Container that holds all slides */
+.slides {
+  position: relative;              /* Allows absolutely-positioned slides inside */
+  width: 100%;
+  height: 0;
+  padding-top: 20px;    /* Increase this value for more space */
+  padding-bottom: 56.25%;          /* Aspect ratio of 16:9 (height based on width) */
+  /* This trick helps keep the slider height proportional and responsive */
+}
+
+/* Each individual slide */
+.slide {
+  position: absolute;              /* Stack slides on top of each other */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;                      /* Hidden by default */
+  transition: opacity 0.6s ease;   /* Fade-in/fade-out transition */
+  pointer-events: none;            /* Make inactive slides non-interactive */
+}
+
+/* Active slide becomes fully visible and interactive */
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Wraps the image to keep it flexible and filling the slide area */
+.slide-image-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;                /* Hides any part of the image that overflows */
+}
+
+/* The image itself should scale proportionally */
+.slide-image {
+  width: 100%;                     /* Image scales with the width of the container */
+  height: 100%;
+  top: 20px;                    /* Fill the height of the container */
+  object-fit: cover;               /* Keep image proportions and cover the container */
+  display: block;
+}
+
+/* Text overlay that sits on top of the image */
+.slide-overlay {
+  position: absolute;
+  bottom: 20px;                       /* Position at the bottom */
+  left: 0;
+  width: 100%;                     /* Full width of slide */
+  
+  background: rgba(15, 23, 42, 0.6);  /* Semi-transparent background */
+  color: #f9fafb;
+
+  padding: 20px 30px;              /* Controls the height of the strip */
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;             /* Centre text horizontally */
+  text-align: center;              /* Centre-align the text */
+  
+  backdrop-filter: blur(2px);      /* Optional: softens background behind strip */
+}
+
+/* Slide heading text */
+.slide-heading {
+  font-size: 1.8rem;
+  margin-bottom: 12px;             /* Space between heading and description */
+}
+
+/* Slide description text */
+.slide-description {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Dots container sits under the slides */
+.slider-dots {
+  display: flex;                   /* Place dots in a row */
+  justify-content: center;         /* Centre the dots horizontally */
+  gap: 10px;                       /* Space between dots */
+  padding: 12px 0 16px;            /* Vertical spacing around dots */
+  background: #020617;             /* Dark bar behind dots */
+}
+
+/* Individual dot styling */
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;              /* Makes the element circular */
+  border: 2px solid #e5e7eb;       /* Light border to make dots visible */
+  background: transparent;         /* Empty inside by default */
+  cursor: pointer;                 /* Show pointer cursor on hover */
+  padding: 0;
+  outline: none;
+}
+
+/* Visual style when a dot is active (represents current slide) */
+.dot.active {
+  background: #38bdf8;             /* Fill with a bright blue to highlight */
+  border-color: #38bdf8;           /* Match the border colour to the fill */
+}
+
+/* Small hover effect to show interactivity */
+.dot:hover {
+  transform: scale(1.15);          /* Slightly increase size on hover */
+}
+
+/* Responsive: slightly adjust text sizes on smaller screens */
+@media (max-width: 600px) {
+  .slide-heading {
+    font-size: 1.4rem;
+  }
+
+  .slide-description {
+    font-size: 0.9rem;
+  }
+}

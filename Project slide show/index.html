@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio Slider</title>
+
+  <!-- Link to the CSS file that styles the slider -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Main wrapper for the portfolio section -->
+  <section class="portfolio-section">
+    <!-- Section heading (optional) -->
+    <h1 class="portfolio-title">My Project Portfolio</h1>
+
+    <!-- Slider container wraps all slides and navigation dots -->
+    <div class="slider">
+      <!-- Slide wrapper: contains all individual slides stacked on top of each other -->
+      <div class="slides">
+        <!-- ===== SLIDE 1 ===== -->
+        <div class="slide active">
+          <!-- Image container keeps image flexible and responsive -->
+          <div class="slide-image-wrapper">
+            <!-- Replace src with your actual image file (e.g., project1.jpg) -->
+            <img src="project1.jpg" alt="Screenshot of Project One" class="slide-image">
+          </div>
+
+          <!-- Overlay goes on top of the image with semi-transparent background -->
+          <div class="slide-overlay">
+            <h2 class="slide-heading">Project One: Portfolio Website</h2>
+            <p class="slide-description">
+              A sleek, responsive portfolio site built with HTML, CSS, and JavaScript,
+              designed to showcase creative work with smooth animations and clean layout.
+            </p>
+          </div>
+        </div>
+
+        <!-- ===== SLIDE 2 ===== -->
+        <div class="slide">
+          <div class="slide-image-wrapper">
+            <img src="project2.jpg" alt="Screenshot of Project Two" class="slide-image">
+          </div>
+          <div class="slide-overlay">
+            <h2 class="slide-heading">Project Two: E-Commerce Prototype</h2>
+            <p class="slide-description">
+              A product landing page and shopping cart prototype, focusing on user-friendly
+              navigation, bold visuals, and clear calls to action.
+            </p>
+          </div>
+        </div>
+
+        <!-- ===== SLIDE 3 ===== -->
+        <div class="slide">
+          <div class="slide-image-wrapper">
+            <img src="project3.jpg" alt="Screenshot of Project Three" class="slide-image">
+          </div>
+          <div class="slide-overlay">
+            <h2 class="slide-heading">Project Three: Interactive Dashboard</h2>
+            <p class="slide-description">
+              A data visualisation dashboard featuring interactive charts and filters,
+              providing a clear overview of key performance metrics.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dot navigation: each dot represents one slide -->
+      <div class="slider-dots">
+        <!-- data-slide attributes link each dot to a specific slide index -->
+        <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
+        <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
+        <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Link to the JavaScript file that adds interactivity -->
+  <script src="script.js"></script>
+</body>
+</html>

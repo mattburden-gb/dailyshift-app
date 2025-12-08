@@ -1,0 +1,320 @@
+/* ------------------------
+   Growth Bridge design tokens
+------------------------- */
+
+:root {
+  --gb-bg: #FFFFFF;
+  --gb-surface-dark: #19234A;   /* dark header / hero panels */
+  --gb-surface-muted: #DCDCDC;  /* light grey panels */
+  --gb-text-main: #696969;      /* primary body text on light */
+  --gb-text-on-dark: #FFFFFF;   /* text on dark backgrounds */
+  --gb-accent: #2F4F4F;         /* primary accent / buttons / links */
+  --gb-accent-alt: #696969;     /* secondary accent / neutrals */
+  --gb-border-subtle: #DCDCDC;  /* light borders & dividers */
+}
+
+/* Base layout and typography */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--gb-bg);
+  color: var(--gb-text-main);
+  line-height: 1.7;
+}
+
+/* Headings */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin-top: 0;
+  color: var(--gb-surface-dark);
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Paragraphs */
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Universal content container */
+
+.container {
+  max-width: 960px;      /* controls overall page width */
+  margin: 0 auto;        /* centres the content */
+  padding: 0 20px;       /* left/right spacing on mobile */
+}
+
+/* Sections */
+
+section {
+  padding: 60px 0;
+  border-bottom: 1px solid var(--gb-border-subtle);
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+/* ------------------------
+   Header
+------------------------- */
+
+header {
+  background-color: var(--gb-surface-dark);
+  color: var(--gb-text-on-dark);
+  padding: 20px 0 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Name */
+
+header h1 {
+  margin: 0 0 0.75rem;
+  font-size: 2.1rem;
+  color: var(--gb-text-on-dark);
+}
+
+/* Navigation */
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--gb-text-on-dark);
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------
+   Links & buttons
+------------------------- */
+
+/* Default links in content */
+a {
+  color: var(--gb-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Generic button styles (for future use) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 48px;
+  border: none;
+  background-color: var(--gb-accent);
+  color: var(--gb-text-on-dark);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.1s ease;
+}
+
+.btn-sm {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.75rem;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  filter: brightness(0.95);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Keep header nav + footer links white on dark backgrounds */
+header a {
+  color: var(--gb-text-on-dark);
+}
+
+/* ------------------------
+   Projects section
+------------------------- */
+
+#projects {
+  /* uses default white background */
+}
+
+#projects .container {
+  /* in case you want custom spacing later */
+}
+
+/* ------------------------
+   About section
+------------------------- */
+
+#about {
+  background-color: var(--gb-surface-muted);  /* soft light grey band */
+}
+
+#about .container {
+  text-align: center;
+}
+
+/* Profile photo */
+
+.profile-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;       /* fully rounded */
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 1.25rem;   /* centre + space underneath */
+}
+
+/* Keep the text nicely centred and readable */
+
+#about p {
+  max-width: 640px;
+  margin: 0 auto 1rem;
+}
+
+/* Resume link styling */
+
+#about a {
+  font-weight: 600;
+}
+
+/* ------------------------
+   Skills section
+------------------------- */
+
+#skills .container {
+  max-width: 720px;  /* slightly narrower for readability if you like */
+}
+
+.skill {
+  margin-bottom: 1.75rem;
+}
+
+.skill h3 {
+  margin-bottom: 0.25rem;
+}
+
+.skill p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* Progress bars – Growth Bridge colours */
+
+progress {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: none;
+}
+
+progress::-webkit-progress-bar {
+  background-color: var(--gb-surface-muted);
+}
+
+progress::-webkit-progress-value {
+  background-color: var(--gb-accent);
+}
+
+progress::-moz-progress-bar {
+  background-color: var(--gb-accent);
+  border-radius: 10px;
+}
+
+/* Wrapper for positioning the % label */
+
+.skill-bar-wrapper {
+  position: relative;
+  margin: 12px 0;
+}
+
+/* % text label sitting inside the bar */
+
+.skill-bar-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--gb-text-on-dark);
+  font-weight: 600;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+/* ------------------------
+   Footer
+------------------------- */
+
+footer {
+  background-color: var(--gb-surface-dark);
+  color: var(--gb-text-on-dark);
+  padding: 2rem 0 3rem;
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 0 0 1rem;
+}
+
+/* Social icons */
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: var(--gb-text-on-dark);
+  font-size: 1.2rem;
+}
+
+.social-links a:hover {
+  opacity: 0.8;
+}
+
+/* ------------------------
+   Responsive tweaks
+------------------------- */
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 1.6rem;
+  }
+}
+
+

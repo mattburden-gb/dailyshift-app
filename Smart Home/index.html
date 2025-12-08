@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Smart Home</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- PWA: manifest + theme colour -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ff7f1a" />
+
+  <!-- iOS specific PWA bits -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Smart Home" />
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+
+  <!-- Font Awesome, etc… -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <!-- App Header -->
+  <header>
+    <h1><i class="fa-solid fa-house"></i> My Smart Home</h1>
+  </header>
+
+  <!-- Main App Content -->
+  <main>
+
+    <!-- Lighting Section -->
+    <section id="lighting-section">
+    <h2><i class="fa-solid fa-lightbulb"></i> Lighting</h2>
+
+    <!-- Toggle row for lighting -->
+    <div class="lighting-toggle">
+
+        <!-- Toggle switch -->
+        <label class="switch">
+        <input type="checkbox" id="lights-toggle">
+        <span class="slider"></span>
+        </label>
+    </div>
+    </section>
+
+
+    <section id="temperature-section">
+    <h2><i class="fa-solid fa-temperature-half"></i> Temperature</h2>
+
+    <!-- TEMPERATURE DISPLAY -->
+    <div id="temperature-display">
+        <span id="current-temp">78°F</span>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="controls-row">
+        <button class="control-button" id="temp-down-btn">
+        <i class="fa-solid fa-temperature-arrow-down"></i> Cooler
+        </button>
+
+        <button class="control-button" id="temp-up-btn">
+        <i class="fa-solid fa-temperature-arrow-up"></i> Warmer
+        </button>
+    </div>
+    </section>
+
+
+
+    <!-- Music Section -->
+<section id="music-section">
+  <h2><i class="fa-solid fa-music"></i> Music</h2>
+
+  <!-- SONG DISPLAY -->
+  <div id="music-display">
+    <span id="current-song">Ready to play something ridiculous...</span>
+  </div>
+
+  <div class="controls-row">
+    <!-- Play / Pause toggle -->
+    <button class="control-button" id="music-play-btn">
+      <i id="play-icon" class="fa-solid fa-play"></i>
+      <span class="btn-label">Play</span>
+    </button>
+
+    <!-- Stop -->
+    <button class="control-button" id="music-stop-btn">
+      <i class="fa-solid fa-stop"></i> Stop
+    </button>
+
+    <!-- Next -->
+    <button class="control-button" id="music-next-btn">
+      <i class="fa-solid fa-forward"></i> Next
+    </button>
+  </div>
+</section>
+
+
+
+  </main>
+
+<script src="script.js"></script>
+</body>
+</html>
+

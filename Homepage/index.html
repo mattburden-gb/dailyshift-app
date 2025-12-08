@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Personal Homepage</title>
+
+  <!-- Icons + CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="slideshow.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Matt Burden</h1>
+    <nav>
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main content wrapper -->
+  <main>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container">
+        <h2>My Project Portfolio</h2>
+
+        <div class="portfolio-section">
+          <div class="slider">
+            <div class="slides">
+              <!-- SLIDE 1 -->
+              <div class="slide active">
+                <div class="slide-image-wrapper">
+                  <img src="project1.jpg" alt="Screenshot of Project One" class="slide-image">
+                </div>
+                <div class="slide-overlay">
+                  <h4 class="slide-heading">Project One: Portfolio Website</h4>
+                  <p class="slide-description">
+                    A sleek, responsive portfolio site built with HTML, CSS, and JavaScript,
+                    designed to showcase creative work with smooth animations and a clean layout.
+                  </p>
+                </div>
+              </div>
+
+              <!-- SLIDE 2 -->
+              <div class="slide">
+                <div class="slide-image-wrapper">
+                  <img src="project2.jpg" alt="Screenshot of Project Two" class="slide-image">
+                </div>
+                <div class="slide-overlay">
+                  <h4 class="slide-heading">Project Two: E-Commerce Prototype</h4>
+                  <p class="slide-description">
+                    A product landing page and shopping cart prototype, focusing on user-friendly
+                    navigation, bold visuals, and clear calls to action.
+                  </p>
+                </div>
+              </div>
+
+              <!-- SLIDE 3 -->
+              <div class="slide">
+                <div class="slide-image-wrapper">
+                  <img src="project3.jpg" alt="Screenshot of Project Three" class="slide-image">
+                </div>
+                <div class="slide-overlay">
+                  <h4 class="slide-heading">Project Three: Interactive Dashboard</h4>
+                  <p class="slide-description">
+                    A data visualisation dashboard featuring interactive charts and filters,
+                    providing a clear overview of key performance metrics.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dots -->
+            <div class="slider-dots">
+              <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
+              <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
+              <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <h2>About Me</h2>
+
+        <div class="about-content">
+          <img src="Matt-Burden2.jpg" alt="Photo of Matt Burden" class="profile-photo">
+
+          <!-- Friendly introduction -->
+          <p>
+            Hi, I'm Matt Burden — a creator, builder, and lifelong learner.
+            I'm passionate about making digital experiences that are clean, simple,
+            and enjoyable to use. This site is where I share my work, ideas, and things
+            I'm learning along the way.
+          </p>
+
+          <!-- Résumé link -->
+          <p>
+            <a href="matt-resume.pdf" target="_blank">View my résumé</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="container">
+        <h2>Skills</h2>
+
+        <!-- HTML Skill -->
+        <div class="skill">
+          <h3>HTML</h3>
+          <p>Proficient in writing semantic and accessible HTML code for building web pages.</p>
+          <div class="skill-bar-wrapper">
+            <progress value="90" max="100"></progress>
+            <span class="skill-bar-label">90%</span>
+          </div>
+        </div>
+
+        <!-- CSS Skill -->
+        <div class="skill">
+          <h3>CSS</h3>
+          <p>Skilled in styling web pages with CSS, creating responsive layouts, and designing clean UI.</p>
+          <div class="skill-bar-wrapper">
+            <progress value="85" max="100"></progress>
+            <span class="skill-bar-label">85%</span>
+          </div>
+        </div>
+
+        <!-- JavaScript Skill -->
+        <div class="skill">
+          <h3>JavaScript</h3>
+          <p>Familiar with JavaScript and building interactive features for websites.</p>
+          <div class="skill-bar-wrapper">
+            <progress value="70" max="100"></progress>
+            <span class="skill-bar-label">70%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Matt Burden. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/YOUR-LINK" target="_blank">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://twitter.com/YOUR-USERNAME" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://instagram.com/YOUR-USERNAME" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>

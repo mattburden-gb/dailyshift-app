@@ -1,0 +1,305 @@
+/* Global reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* App background */
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #6c1dd0 0%, #28074a 40%, #140326 100%);
+  color: #fff;
+
+  /* NEW / UPDATED LINES ↓ */
+  display: flex;              /* turn the body into a flexbox container         */
+  flex-direction: column;     /* stack children (header + main) vertically      */
+  align-items: center;        /* centre them horizontally in the middle         */
+  justify-content: flex-start;/* start near the top (not perfectly centred top) */
+
+  padding: 1.5rem 1rem;
+}
+
+/* Header */
+header {
+  width: 100%;             /* take full width up to the max-width below        */
+  max-width: 420px;        /* keeps it from becoming too wide on big screens   */
+  text-align: center;      /* centre the “My Smart Home” text                  */
+  margin-bottom: 1.2rem;
+}
+
+header h1 {
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  color: #ffffff;  /* text: white */
+  text-shadow: 0 0 8px rgba(255, 127, 26, 0.4);
+}
+
+header h1 i {
+  margin-right: 0.4rem;
+  color: #ff7f1a; /* icon: orange */
+}
+
+
+/* Main app content */
+main {
+  width: 100%;             /* fill the available width                         */
+  max-width: 420px;        /* match header width so sections align underneath  */
+}
+
+/* Section container */
+section {
+  background: linear-gradient(135deg, rgba(40, 7, 74, 0.9), rgba(73, 16, 136, 0.95));
+  border-radius: 18px;
+  padding: 1rem 1.1rem 1.2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(189, 77, 229, 0.4);
+}
+
+/* Section headings */
+section h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+
+  display: flex;           /* keep icon + text in a row          */
+  align-items: center;     /* vertically centre them              */
+  justify-content: center; /* NEW: centre the row horizontally    */
+  gap: 0.45rem;
+
+  color: #ff19db;
+  text-align: center;      /* centres any text inside the h2      */
+}
+
+section#temperature-section h2 {
+  color: #ffffff;
+}
+
+section#lighting-section h2 {
+  color: #ffffff;
+}
+
+section#music-section h2 {
+  color: #ffffff;                      /* lighter related purple        */
+  font-weight: 400;                    /* lighter font weight           */
+  text-shadow: 0 0 6px rgba(189,77,229,0.5); /* soft glow for contrast  */
+}
+
+section#music-section h2 i {
+  color: #ff7f1a                      /* icon uses same lighter colour */
+}
+
+section h2 i {
+  font-size: 1.1rem;
+  color: #ff7f1a
+}
+
+.controls-row {
+  display: flex;                 /* put the buttons in a row                   */
+  justify-content: space-between;/* spread them out with space between         */
+  gap: 0.6rem;                   /* consistent gap between buttons             */
+  flex-wrap: nowrap;             /* keep them on one line (until mobile view)  */
+}
+#temperature-section .controls-row {
+    justify-content: center;
+  gap: 0.4rem;                   /* slightly smaller gap for temperature buttons */
+}
+
+/* Base style for all Temperature + Music buttons */
+.control-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  width: 32%;
+  min-width: 90px;
+  margin: 0.15rem 0.1rem;
+
+  padding: 0.55rem 0.4rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+ /* NEW: improve touch behaviour on mobile */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #fff;
+
+  /* MUSIC-STYLE COLOUR FOR ALL */
+  background: linear-gradient(135deg, #ff19db, #6c1dd0);
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.1s ease,
+              box-shadow 0.1s ease,
+              filter 0.15s ease,
+              background 0.15s ease;
+}
+
+/* Button hover + active */
+.control-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.05);
+}
+
+/* Short orange flash when pressed (controlled by JS) */
+.control-button.is-pressed {
+  background: linear-gradient(135deg, #ff7f1a, #ff7f1a); /* solid orange */
+  filter: brightness(1.05);
+  transform: translateY(1px);
+}
+
+
+/* Remove default focus ring (we'll handle active state via class) */
+.control-button:focus {
+  outline: none;
+}
+
+/* Persistent active glow – we will toggle this class with JS */
+.control-button.is-active {
+  box-shadow:
+    0 0 0 2px rgba(255, 249, 218, 0.9),   /* subtle inner ring */
+    0 0 18px rgba(255, 25, 219, 0.7),     /* pink outer glow   */
+    0 7px 15px rgba(0, 0, 0, 0.4);        /* original shadow   */
+}
+
+
+/* Icons inside buttons */
+.control-button i {
+  font-size: 0.9rem;
+}
+
+/* Row holding the lighting label + toggle */
+.lighting-toggle {
+  display: flex;                 /* place label and switch in a row            */
+  align-items: center;           /* vertically centre them                     */
+  justify-content: center;       /* centre the whole row in the section        */
+  gap: 0.75rem;                  /* space between text and switch              */
+  margin-top: 0.4rem;
+}
+
+/* Switch container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 110px;
+  height: 32px;
+}
+
+/* Hide the native checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider (background track) */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;                      /* top:0; right:0; bottom:0; left:0;          */
+
+  background: linear-gradient(135deg, #491088, #6c1dd0);  /* OFF colours      */
+  border-radius: 999px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Toggle knob */
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  top: 4px;
+
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+
+  transition: transform 0.2s ease;
+}
+
+/* ON state – when the checkbox is checked */
+.switch input:checked + .slider {
+  background: linear-gradient(135deg, #ff7f1a, #ff19db);  /* ON colours       */
+  box-shadow: 0 8px 16px rgba(255, 25, 219, 0.5);
+}
+
+/* Move the knob to the right when ON */
+.switch input:checked + .slider::before {
+  transform: translateX(78px);
+}
+
+/* Temperature display */
+#temperature-display {
+width: 140px;
+margin: 0 auto;  
+text-align: center;
+  margin-bottom: 0.8rem;
+
+  background: linear-gradient(135deg, rgba(255, 127, 26, 0.25), rgba(255, 25, 219, 0.25));
+  padding: 0.6rem 0.6rem;
+  border-radius: 12px;
+  backdrop-filter: blur(2px);
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 127, 26, 0.35);
+}
+
+#temperature-display #current-temp {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ff7f1a; /* same orange as Temperature heading */
+  text-shadow: 0 0 6px rgba(255, 127, 26, 0.5);
+}
+
+/* Music song display */
+#music-display {
+  text-align: center;
+  margin-bottom: 0.8rem;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 25, 219, 0.25),
+    rgba(108, 29, 208, 0.25)
+  );
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  backdrop-filter: blur(2px);
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 25, 219, 0.4);
+}
+
+#music-display #current-song {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #ffe6ff;
+  text-shadow: 0 0 5px rgba(255, 25, 219, 0.6);
+}
+
+
+/* Small screens tweaks */
+@media (max-width: 400px) {
+  section {
+    padding: 0.9rem 0.7rem;
+  }
+
+  .controls-row {
+    flex-direction: column;  /* stack buttons vertically on tiny screens */
+  }
+
+  .control-button {
+    width: 100%;             /* buttons fill the row width               */
+  }
+}
+

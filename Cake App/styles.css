@@ -1,0 +1,247 @@
+/* Style the overall page layout and basic appearance */
+body {
+  /* Use a clean, easy-to-read font */
+  font-family: Arial, Helvetica, sans-serif;
+  /* Remove the default browser margin around the page */
+  margin: 0;
+  /* Remove the default browser padding around the page */
+  padding: 0;
+  /* Give the page a light background colour to look friendly */
+  background-color: #ffe9f1;
+  /* Make the text a dark colour for good readability */
+  color: #333333;
+}
+
+/* Style the header area at the top of the page */
+.header {
+  /* Use the vibrant pink colour for the header background */
+  background-color: #ff4081;
+  /* Make the text in the header white so it contrasts */
+  color: #ffffff;
+  /* Add space inside the header so the content can breathe */
+  padding: 20px;
+  /* Centre the text in the header */
+  text-align: center;
+}
+
+/* Style the main title text in the header */
+.header-title {
+  /* Remove default margin around the heading */
+  margin: 0;
+  /* Make the title text larger */
+  font-size: 2.2rem;
+}
+
+/* Style the subtitle text in the header */
+.header-subtitle {
+  /* Add a little space above the subtitle */
+  margin-top: 8px;
+  /* Make the subtitle slightly smaller than the main title */
+  font-size: 1rem;
+}
+
+/* Style the main container that holds all sections under the header */
+.main-container {
+  /* Limit the maximum width so the content does not stretch too wide */
+  max-width: 800px;
+  /* Centre the container horizontally */
+  margin: 20px auto;
+  /* Add space inside the container */
+  padding: 20px;
+  /* Give the container a white background for contrast */
+  background-color: #ffffff;
+  /* Round the corners slightly to soften the look */
+  border-radius: 8px;
+  /* Add a subtle shadow to lift the container off the background */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the titles for each section (entry, participants, winner) */
+.section-title {
+  /* Add some space below the title */
+  margin-bottom: 10px;
+  /* Make the section titles a bit larger */
+  font-size: 1.3rem;
+  /* Make the titles a slightly darker pink to match the theme */
+  color: #d81b60;
+}
+
+/* Style the entry form section */
+.entry-section {
+  /* Add space at the bottom to separate it from the next section */
+  margin-bottom: 20px;
+}
+
+/* Style the form that holds the input and button */
+.entry-form {
+  /* Display the form elements in a vertical column */
+  display: flex;
+  /* Make the items stack vertically instead of side by side */
+  flex-direction: column;
+  /* Add space between the form elements */
+  gap: 10px;
+}
+
+/* Style the label above the input box */
+.entry-label {
+  /* Make the label text slightly bold */
+  font-weight: bold;
+}
+
+/* Style the text input where the user types their name */
+.entry-input {
+  /* Add space inside the text input */
+  padding: 10px;
+  /* Make the text input take up the full width of its container */
+  width: 100%;
+  /* Round the corners slightly */
+  border-radius: 4px;
+  /* Set a light grey border around the input */
+  border: 1px solid #cccccc;
+  /* Increase the font size inside the input */
+  font-size: 1rem;
+  /* Use border-box so padding does not increase the full width */
+  box-sizing: border-box;
+}
+
+/* Style the button used to add a participant */
+.entry-button {
+  /* Add vertical and horizontal padding around the button text */
+  padding: 10px 16px;
+  /* Use the vibrant pink colour as the button background */
+  background-color: #ff4081;
+  /* Make the button text white for contrast */
+  color: #ffffff;
+  /* Remove the default browser border */
+  border: none;
+  /* Round the button corners */
+  border-radius: 4px;
+  /* Make the text slightly bold */
+  font-weight: bold;
+  /* Centre the text in the button */
+  text-align: center;
+  /* Change the mouse cursor to a pointer when hovering */
+  cursor: pointer;
+  /* Add a small transition for smooth hover effects */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Style how the add button looks when the mouse hovers over it */
+.entry-button:hover {
+  /* Darken the button colour slightly on hover */
+  background-color: #e73370;
+  /* Make the button grow very slightly on hover */
+  transform: translateY(-1px);
+}
+
+/* Style how the add button looks when it is actively clicked */
+.entry-button:active {
+  /* Darken the button even more when clicked */
+  background-color: #c0245d;
+  /* Make the button look pressed down */
+  transform: translateY(0);
+}
+
+/* Style the participants section */
+.participants-section {
+  /* Add space at the bottom to separate it from the next section */
+  margin-bottom: 20px;
+}
+
+/* Style the list that displays all participant names */
+.participant-list {
+  /* Remove the default list bullets */
+  list-style-type: none;
+  /* Remove default margin */
+  margin: 0;
+  /* Remove default padding */
+  padding: 0;
+}
+
+/* Style each individual participant item in the list */
+.participant-list li {
+  /* Add vertical and horizontal padding inside each list item */
+  padding: 8px 10px;
+  /* Add a light pink background to each item */
+  background-color: #ffe4f0;
+  /* Round the corners slightly */
+  border-radius: 4px;
+  /* Add a bit of space below each item */
+  margin-bottom: 6px;
+}
+
+/* Style the winner section */
+.winner-section {
+  /* Add space at the bottom to separate it from the draw button section */
+  margin-bottom: 20px;
+}
+
+/* Style the text that displays the winner */
+.winner-message {
+  /* Increase the font size a little */
+  font-size: 1.1rem;
+  /* Make the text slightly bold */
+  font-weight: bold;
+  /* Use a darker purple-pink for emphasis */
+  color: #880e4f;
+}
+
+/* Style the section that holds the draw button */
+.draw-section {
+  /* Centre the draw button horizontally */
+  text-align: center;
+}
+
+/* Style the draw button used to select a random winner */
+.draw-button {
+  /* Add padding inside the button */
+  padding: 12px 20px;
+  /* Use a complementary purple colour for the background */
+  background-color: #7c4dff;
+  /* Make the button text white */
+  color: #ffffff;
+  /* Remove the default button border */
+  border: none;
+  /* Round the button corners */
+  border-radius: 20px;
+  /* Make the text slightly larger */
+  font-size: 1rem;
+  /* Make the text bold */
+  font-weight: bold;
+  /* Change the cursor to a pointer when hovering */
+  cursor: pointer;
+  /* Add a gentle shadow to make the button stand out */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  /* Add a smooth transition for hover and active effects */
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Style how the draw button looks when hovered */
+.draw-button:hover {
+  /* Slightly darken the button background */
+  background-color: #651fff;
+  /* Move the button up a tiny bit for a “lifted” feel */
+  transform: translateY(-1px);
+  /* Increase the shadow to match the lifted effect */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Style how the draw button looks when being clicked */
+.draw-button:active {
+  /* Darken the button background a bit more */
+  background-color: #6200ea;
+  /* Move the button back down */
+  transform: translateY(0);
+  /* Reduce the shadow to make it look pressed */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the draw button when it is disabled (not clickable) */
+.draw-button:disabled {
+  /* Use a grey background to indicate it is not active */
+  background-color: #b0b0b0;
+  /* Change the cursor to indicate it is not clickable */
+  cursor: not-allowed;
+  /* Reduce the shadow when disabled */
+  box-shadow: none;
+}

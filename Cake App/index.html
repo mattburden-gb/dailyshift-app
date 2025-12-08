@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Tell the browser how to read this file and which characters it can expect -->
+  <meta charset="UTF-8">
+  <!-- Make sure the layout works well on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Set the title that appears in the browser tab -->
+  <title>Cake Raffle</title>
+  <!-- Link to the external CSS file that styles the page -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header section at the top of the page -->
+  <header class="header">
+    <h1 class="header-title">Cake Raffle</h1>
+    <p class="header-subtitle">Enter your name for a chance to win a delicious cake!</p>
+  </header>
+
+  <!-- Main container that holds all content under the header -->
+  <main class="main-container">
+    <!-- Section for the entry form -->
+    <section class="entry-section">
+      <h2 class="section-title">Enter the raffle</h2>
+      <!-- Form where users type their name and submit -->
+      <form id="entry-form" class="entry-form">
+        <!-- Text box where the user types their name -->
+        <label for="name-input" class="entry-label">Your name</label>
+        <input
+          type="text"
+          id="name-input"
+          class="entry-input"
+          placeholder="Type your name here"
+          required
+        >
+        <!-- Button to add the entered name to the participants list -->
+        <button type="submit" class="entry-button">Add Participant</button>
+      </form>
+    </section>
+
+    <!-- Section that shows all current participants -->
+    <section class="participants-section">
+      <h2 class="section-title">Participants</h2>
+      <!-- Unordered list where each participant name will appear -->
+      <ul id="participant-list" class="participant-list">
+        <!-- List items will be added here by JavaScript -->
+      </ul>
+    </section>
+
+    <!-- Section that shows the winner -->
+    <section class="winner-section">
+      <h2 class="section-title">Winner</h2>
+      <!-- Paragraph where the winner's name and emojis will appear -->
+      <p id="winner-message" class="winner-message">
+        No winner yet. Click "Draw Winner" when you're ready!
+      </p>
+    </section>
+
+    <!-- Section that holds the draw button -->
+    <section class="draw-section">
+      <!-- Button that will trigger the random winner selection -->
+      <button id="draw-button" class="draw-button">
+        Draw Winner
+      </button>
+    </section>
+  </main>
+
+  <!-- Link to the JavaScript file that adds interactivity -->
+  <script src="script.js" defer></script>
+</body>
+</html>

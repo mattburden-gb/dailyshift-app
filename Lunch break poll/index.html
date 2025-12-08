@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LunchVote</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+  <!-- Outer wrapper (centres everything using CSS flexbox) -->
+  <div class="app-container">
+
+    <!-- Main card -->
+    <div class="lunch-card">
+
+      <!-- Title -->
+      <h1 class="lunch-title">
+        🍔 LunchVote
+      </h1>
+
+      <!-- Add Place Form -->
+      <form id="placeForm">
+        <input
+          id="placeInput"
+          type="text"
+          placeholder="Add a lunch place"
+          autocomplete="off"
+        />
+        <button type="submit">+</button>
+      </form>
+
+      <!-- Leading Place Display -->
+      <p id="leadingPlace">No places added yet.</p>
+
+      <!-- List of places -->
+      <div id="placesList"></div>
+
+      <!-- Delete Poll Button -->
+      <button id="deletePollButton" style="display: none;">
+        Delete poll
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Firebase logic -->
+  <script type="module" src="index.js"></script>
+
+</body>
+</html>

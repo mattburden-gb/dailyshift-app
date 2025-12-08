@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SnapStash</title>
+
+  <!-- Main popup styles -->
+  <link rel="stylesheet" href="popup.css">
+  <!-- Icon font (Font Awesome) for the delete/trash icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <h1>SnapStash</h1>
+
+  <!-- Preview of the current tab's item name (title truncated to 50 chars) -->
+  <p id="item-preview">Current item: (loading...)</p>
+
+  <!-- Controls row: category dropdown + save button -->
+  <div class="controls">
+    <!-- ID must match popup.js: "category-select" -->
+    <select id="category-select">
+      <option value="">--Select a category--</option>
+      <option value="Whisky">Whisky</option>
+      <option value="Lego">Lego</option>
+      <option value="Clothes">Clothes</option>
+      <option value="Shoes">Shoes</option>
+      <option value="Electronics">Electronics</option>
+      <option value="Pets">Pets</option>
+      <option value="Health">Health</option>
+    </select>
+
+    <button id="save-btn">Save Item</button>
+  </div>
+
+  <h2>Saved items</h2>
+
+  <!-- Separate lists for each category -->
+  <div class="categories-container">
+
+    <div class="category-section">
+      <h3>Whisky</h3>
+      <ul id="list-whisky" class="category-list"></ul>
+    </div>
+
+    <div class="category-section">
+      <h3>Lego</h3>
+      <ul id="list-lego" class="category-list"></ul>
+    </div>
+
+    <div class="category-section">
+      <h3>Clothes</h3>
+      <ul id="list-clothes" class="category-list"></ul>
+    </div>
+
+    <div class="category-section">
+      <h3>Shoes</h3>
+      <ul id="list-shoes" class="category-list"></ul>
+    </div>
+
+    <div class="category-section">
+      <h3>Electronics</h3>
+      <ul id="list-electronics" class="category-list"></ul>
+    </div>
+
+    <div class="category-section">
+      <h3>Pets</h3>
+      <ul id="list-pets" class="category-list"></ul>
+    </div>
+
+    <div class="category-section">
+      <h3>Health</h3>
+      <ul id="list-health" class="category-list"></ul>
+    </div>
+
+  </div>
+
+  <!-- Popup logic -->
+  <script src="popup.js"></script>
+</body>
+</html>
+
+
+

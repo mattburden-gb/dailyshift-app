@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🔔 OBB 🔔</title>
+
+  <!-- Link to your CSS file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Game container -->
+  <main class="game-container">
+    <!-- Game title -->
+    <h1 class="game-title">🔔 Orange Baby Bash 🔚</h1>
+
+    <!-- Controls: start button, score, timer -->
+    <section class="game-header">
+      <!-- Start button centred at the top -->
+      <button id="start-button">Start Game</button>
+
+      <!-- Big centred score text -->
+      <p class="score-text">
+        Score: <span id="score-value">0</span>
+      </p>
+
+      <!-- Timer + final message row -->
+      <p class="timer-text">
+        <!-- This span shows during the game -->
+        <span id="timer-label">
+          Time left: <span id="time-remaining">30</span> seconds
+        </span>
+
+        <!-- This span will show the final message when the game ends -->
+        <span id="final-message" class="final-message hidden"></span>
+      </p>
+    </section>
+
+    <!-- Game board with 6 holes -->
+    <section class="game-board">
+      <!-- Hole 1 -->
+      <div class="hole" data-hole="1">
+        <img src="trmp.png" alt="FaceBomp target" class="target-image">
+      </div>
+
+      <!-- Hole 2 -->
+      <div class="hole" data-hole="2">
+        <img src="trmp.png" alt="FaceBomp target" class="target-image">
+      </div>
+
+      <!-- Hole 3 -->
+      <div class="hole" data-hole="3">
+        <img src="trmp.png" alt="FaceBomp target" class="target-image">
+      </div>
+
+      <!-- Hole 4 -->
+      <div class="hole" data-hole="4">
+        <img src="trmp.png" alt="FaceBomp target" class="target-image">
+      </div>
+
+      <!-- Hole 5 -->
+      <div class="hole" data-hole="5">
+        <img src="trmp.png" alt="FaceBomp target" class="target-image">
+      </div>
+
+      <!-- Hole 6 -->
+      <div class="hole" data-hole="6">
+        <img src="trmp.png" alt="FaceBomp target" class="target-image">
+      </div>
+    </section>
+  </main>
+
+  <!-- Bomp sound: controls added temporarily so you can test it manually -->
+  <audio id="bomp-sound" src="bomp.wav" preload="auto"></audio>
+  <audio id="end-sound" src="game-end.wav"></audio>
+  <audio id="high-sound" src="game-end_high.wav"></audio>
+
+  <!-- Link to your JavaScript file -->
+  <script src="script.js"></script>
+</body>
+</html>
+

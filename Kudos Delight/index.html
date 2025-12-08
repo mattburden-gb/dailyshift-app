@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DailyShift – Mindset Statements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- iOS PWA behaviour -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="DailyShift">
+    <link rel="apple-touch-icon" href="gb_logo.png">
+
+    <!-- Makes the site behave like an installable mobile app -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="DailyShift">
+
+<!-- App icon for iOS Home Screen -->
+<link rel="apple-touch-icon" href="gb_logo.png">
+
+
+    <!-- Growth Bridge typography: Montserrat (headings) + Roboto (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Page styles -->
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="container">
+        <!-- Brand block -->
+        <div class="brand">
+          <!-- Replace src with your actual Growth Bridge logo file -->
+          <img
+            src="web banner WHITE.png"
+            alt="Growth Bridge logo"
+            class="brand-logo"
+          />
+          <h1>DailyShift</h1>
+          <p class="subtitle">Everyone needs a gentle nudge from time to</p>
+        </div>
+
+        <!-- Display area for affirmations / reminders -->
+        <p class="display" id="compliment-display"></p>
+
+        <!-- Main action buttons -->
+        <div class="actions">
+          <button id="courageButton">Courage</button>
+          <button id="positivityButton">Positivity</button>
+          <button id="appreciationButton">Appreciation</button>
+          <button id="gratitudeButton">Gratitude</button>
+        </div>
+
+        <!-- Gratitude flow (shown/hidden via JS) -->
+        <section id="gratitudePanel" class="gratitude hidden">
+          <p class="gratitude-title">What are you grateful for today?</p>
+          <p class="gratitude-subtext">
+            Add three things you're grateful for. We'll save them so we can
+            remind you later.
+          </p>
+
+          <input
+            type="text"
+            id="gratitudeInput1"
+            class="gratitude-input"
+            placeholder="Grateful for #1"
+          />
+          <input
+            type="text"
+            id="gratitudeInput2"
+            class="gratitude-input"
+            placeholder="Grateful for #2"
+          />
+          <input
+            type="text"
+            id="gratitudeInput3"
+            class="gratitude-input"
+            placeholder="Grateful for #3"
+          />
+
+          <div class="gratitude-actions">
+            <button id="saveGratitudeButton">Save Gratitude</button>
+            <button id="gratitudeReminderButton" class="btn-secondary">
+              Gratitude Reminder
+            </button>
+          </div>
+        </section>
+
+        <!-- Success / feedback message -->
+        <p id="successMessage" class="hidden"></p>
+      </div>
+    </main>
+
+    <!-- Firebase + app logic -->
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
+
+

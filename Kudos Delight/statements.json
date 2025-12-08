@@ -1,0 +1,41 @@
+{
+  "statements": {
+    "courage": {
+      "c1": "I can handle whatever today brings with calm and courage.",
+      "c2": "I have done hard things before; I can do them again.",
+      "c3": "I am brave, authentic and proactive, and believe in my skills and experience.",
+      "c4": "I am not guided and controlled by fear. I carry it forward and show it the way",
+      "c5": "I know fear is a sensation I can tune into and I understand where it comes from",
+      "c6": "I am willing",
+      "c7": "I am not my thoughts, I am what I do.",
+      "c8": "I can always be humble and dignified. I cannot control the respect, appreciation, authenticity of others.",
+      "c10": "Every action I take and every person I speak to is getting me one step closer.",
+      "c11": "I have value. I take action to solve. I lead the outcome."
+    }
+    ,
+    "positivity": {
+      "p1": "I don’t entertain negative thoughts that don’t nourish and sustain me",
+      "p2": "Today is full of small opportunities to move things forward.",
+      "p3": "I don't worry about the things I cannot control.",
+      "p4": "I am grateful every day for the love I have around me",
+      "p8": "I am confident that the universe is reflecting back on me that I am on the right track, so everything is in order. ",
+      "p10": "I expect nothing and accept everything",
+      "p11": "I will always choose kindness, to myself or others.",
+      "p12": "I am committed to knowing who I am, where I have come from and what I stand for.",
+      "p13": "I will be the best I can be in the life I am living now"
+
+    }
+    ,
+    "appreciation": {
+      "a1": "I appreciate the love of my family.",
+      "a2": "I appreciate the tribes that help me.",
+      "a4": "I appreciate the effort I put in to finding the gateways to opportunities.",
+      "a5": "I appreciate my lessons and my resilience.",
+      "a8": "I appreciate the joy from my learnings.",
+      "a9": "I’m thankful for the times I choose kindness, to myself or others.",
+      "a10": "I appreciate my commitment to want to be better",
+      "a12": "I appreciate the future I’m quietly building for myself.",
+      "a13": "You need to love the life you live, not the one you might have expected to have."
+    }
+  }
+}
