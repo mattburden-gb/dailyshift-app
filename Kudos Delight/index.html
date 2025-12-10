@@ -71,48 +71,105 @@
           </div>
         </section>
 
-        <!-- GRATITUDE VIEW -->
-        <section id="gratitudeView" class="view hidden">
-          <div class="view-header">
-            <h2>Gratitude</h2>
-            <p>We’ll build your full gratitude flow here in the next phase.</p>
+      <!-- GRATITUDE VIEW -->
+      <section id="gratitudeView" class="view hidden">
+        <div class="gratitude-wrapper">
+          <header class="view-header">
+            <h2>Your Gratitude Journey</h2>
+            <p class="view-subtitle">
+              Start or continue your gratitude practice today.
+            </p>
+          </header>
+
+          <!-- Step 1: Choose what to do -->
+          <div class="gratitude-choice-card">
+            <p class="gratitude-choice-title">
+              What would you like to do today?
+            </p>
+            <div class="gratitude-choice-actions">
+              <button id="startGratitudeButton" class="btn-primary">
+                Add 3 things I’m grateful for
+              </button>
+              <button id="remindGratitudeButton" class="btn-secondary">
+                Be reminded of past gratitude
+              </button>
+            </div>
           </div>
 
-          <button id="backFromGratitudeButton" class="btn-tertiary">
-            ← Back to home
-          </button>
-        </section>
+          <!-- Option A: Input 3 gratitude statements -->
+          <section
+            id="gratitudeInputSection"
+            class="gratitude-panel hidden"
+            aria-label="Add today's gratitude"
+          >
+            <h3 class="gratitude-panel-title">
+              Today I am most grateful for…
+            </h3>
+            <p class="gratitude-panel-subtitle">
+              Take a moment to reflect on three things.
+            </p>
 
-        <!-- BOOSTED VIEW (uses your existing functionality) -->
-        <section id="boostedView" class="view hidden">
-          <!-- Statement display -->
-          <p class="display">
-            <span id="compliment-display" class="display-text"></span>
-          </p>
+            <div class="gratitude-field">
+              <label for="gratitude1">Gratitude 1</label>
+              <textarea
+                id="gratitude1"
+                rows="2"
+                placeholder="Something that made me smile…"
+              ></textarea>
+            </div>
 
-          <!-- Category buttons (Courage / Positivity / Appreciation / Gratitude) -->
-          <div class="actions">
-            <button id="courageButton" class="btn-primary">Courage</button>
-            <button id="positivityButton" class="btn-primary">Positivity</button>
-            <button id="appreciationButton" class="btn-primary">Appreciation</button>
-            <button id="gratitudeButton" class="btn-secondary">
-              Gratitude
+            <div class="gratitude-field">
+              <label for="gratitude2">Gratitude 2</label>
+              <textarea
+                id="gratitude2"
+                rows="2"
+                placeholder="A person I appreciate…"
+              ></textarea>
+            </div>
+
+            <div class="gratitude-field">
+              <label for="gratitude3">Gratitude 3</label>
+              <textarea
+                id="gratitude3"
+                rows="2"
+                placeholder="A moment I'm thankful for…"
+              ></textarea>
+            </div>
+
+            <button id="saveGratitudeButton" class="btn-primary full-width">
+              Save my gratitude
             </button>
-          </div>
 
-          <!-- Existing add-statement form -->
-          <form id="complimentForm" class="hidden">
-            <label for="complimentInput">Add your own statement:</label>
-            <input type="text" id="complimentInput" />
-            <button type="submit" class="btn-primary">Save</button>
-          </form>
+            <p id="gratitudeSaveMessage" class="inline-message hidden"></p>
+          </section>
 
-          <p id="successMessage" class="hidden"></p>
+    <!-- Option B: Reminders placeholder (we'll wire data in next phase) -->
+    <section
+      id="gratitudeRemindSection"
+      class="gratitude-panel hidden"
+      aria-label="Gratitude reminders"
+    >
+      <h3 class="gratitude-panel-title">
+        Your recent gratitude
+      </h3>
+      <p class="gratitude-panel-subtitle">
+        Soon this space will show your most recent entries as gentle reminders.
+      </p>
 
-          <button id="backFromBoostedButton" class="btn-tertiary">
-            ← Back to home
-          </button>
-        </section>
+      <div class="gratitude-reminders-placeholder">
+        <p>No reminders just yet.</p>
+        <p class="small-muted">
+          Once you’ve saved a few gratitude entries, we’ll surface the last six
+          here.
+        </p>
+      </div>
+    </section>
+
+    <button id="backFromGratitudeButton" class="btn-tertiary back-link">
+      ← Back to home
+    </button>
+  </div>
+</section>
 
       </main>
 

@@ -98,6 +98,72 @@ if (backFromBoostedButton) {
 // Make sure we land on home when the app loads
 showView("homeView");
 
+// -------------------- GRATITUDE UI BEHAVIOUR --------------------
+
+const startGratitudeButton = document.getElementById("startGratitudeButton");
+const remindGratitudeButton = document.getElementById("remindGratitudeButton");
+
+const gratitudeInputSection = document.getElementById("gratitudeInputSection");
+const gratitudeRemindSection = document.getElementById("gratitudeRemindSection");
+
+const gratitude1Input = document.getElementById("gratitude1");
+const gratitude2Input = document.getElementById("gratitude2");
+const gratitude3Input = document.getElementById("gratitude3");
+const gratitudeSaveBtn = document.getElementById("saveGratitudeButton");
+const gratitudeSaveMessage = document.getElementById("gratitudeSaveMessage");
+
+function showGratitudePanel(panel) {
+  if (!gratitudeInputSection || !gratitudeRemindSection) return;
+
+  gratitudeInputSection.classList.add("hidden");
+  gratitudeRemindSection.classList.add("hidden");
+
+  if (panel === "input") {
+    gratitudeInputSection.classList.remove("hidden");
+  } else if (panel === "remind") {
+    gratitudeRemindSection.classList.remove("hidden");
+  }
+}
+
+if (startGratitudeButton) {
+  startGratitudeButton.addEventListener("click", () => {
+    showGratitudePanel("input");
+  });
+}
+
+if (remindGratitudeButton) {
+  remindGratitudeButton.addEventListener("click", () => {
+    showGratitudePanel("remind");
+  });
+}
+
+// For now, just validate and show a local confirmation.
+// We'll wire this to Firebase in the next phase.
+if (gratitudeSaveBtn) {
+  gratitudeSaveBtn.addEventListener("click", () => {
+    const g1 = gratitude1Input?.value.trim();
+    const g2 = gratitude2Input?.value.trim();
+    const g3 = gratitude3Input?.value.trim();
+
+    if (!g1 && !g2 && !g3) {
+      gratitudeSaveMessage.textContent =
+        "Add at least one gratitude before saving.";
+      gratitudeSaveMessage.classList.remove("hidden");
+      return;
+    }
+
+    // TEMP: local-only logic
+    gratitudeSaveMessage.textContent =
+      "Gratitude saved (locally for now) – we’ll connect this to your journal soon.";
+    gratitudeSaveMessage.classList.remove("hidden");
+
+    // Reset the fields
+    if (gratitude1Input) gratitude1Input.value = "";
+    if (gratitude2Input) gratitude2Input.value = "";
+    if (gratitude3Input) gratitude3Input.value = "";
+  });
+}
+
 // -------------------- HELPERS --------------------
 
 // Try multiple possible paths for a category so we don't care exactly
