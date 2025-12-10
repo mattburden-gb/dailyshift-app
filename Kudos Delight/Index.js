@@ -1,6 +1,6 @@
 // -------------------- FIREBASE SETUP --------------------
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
-import { getDatabase, ref, push, get } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
 
 // Firebase configuration (same as before)
 const firebaseConfig = {
@@ -11,7 +11,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// -------------------- DOM ELEMENTS --------------------
+// -------------------- DOM: STATEMENT DISPLAY & CATEGORY BUTTONS --------------------
 const complimentDisplay = document.getElementById("compliment-display");
 
 const courageButton = document.getElementById("courageButton");
@@ -19,31 +19,17 @@ const positivityButton = document.getElementById("positivityButton");
 const appreciationButton = document.getElementById("appreciationButton");
 const gratitudeButton = document.getElementById("gratitudeButton");
 
-const gratitudePanel = document.getElementById("gratitudePanel");
-const gratitudeInput1 = document.getElementById("gratitudeInput1");
-const gratitudeInput2 = document.getElementById("gratitudeInput2");
-const gratitudeInput3 = document.getElementById("gratitudeInput3");
-const saveGratitudeButton = document.getElementById("saveGratitudeButton");
-const gratitudeReminderButton = document.getElementById(
-  "gratitudeReminderButton"
-);
-
-const successMessage = document.getElementById("successMessage");
-
-// -------------------- VIEW SWITCHING --------------------
-
-// Get view containers
+// -------------------- DOM: VIEWS & NAVIGATION --------------------
 const homeView = document.getElementById("homeView");
 const gratitudeView = document.getElementById("gratitudeView");
 const boostedView = document.getElementById("boostedView");
 
-// Get navigation buttons
 const goToGratitudeButton = document.getElementById("goToGratitudeButton");
 const goToBoostedButton = document.getElementById("goToBoostedButton");
 const backFromGratitudeButton = document.getElementById("backFromGratitudeButton");
 const backFromBoostedButton = document.getElementById("backFromBoostedButton");
 
-// Helper to show a single view
+// -------------------- VIEW SWITCHING --------------------
 function showView(viewId) {
   console.log("showView called with:", viewId);
 
@@ -95,11 +81,10 @@ if (backFromBoostedButton) {
   console.warn("backFromBoostedButton not found");
 }
 
-// Make sure we land on home when the app loads
+// Ensure we land on the home screen on load
 showView("homeView");
 
-// -------------------- GRATITUDE UI BEHAVIOUR --------------------
-
+// -------------------- GRATITUDE VIEW UI BEHAVIOUR --------------------
 const startGratitudeButton = document.getElementById("startGratitudeButton");
 const remindGratitudeButton = document.getElementById("remindGratitudeButton");
 
@@ -146,16 +131,19 @@ if (gratitudeSaveBtn) {
     const g3 = gratitude3Input?.value.trim();
 
     if (!g1 && !g2 && !g3) {
-      gratitudeSaveMessage.textContent =
-        "Add at least one gratitude before saving.";
-      gratitudeSaveMessage.classList.remove("hidden");
+      if (gratitudeSaveMessage) {
+        gratitudeSaveMessage.textContent =
+          "Add at least one gratitude before saving.";
+        gratitudeSaveMessage.classList.remove("hidden");
+      }
       return;
     }
 
-    // TEMP: local-only logic
-    gratitudeSaveMessage.textContent =
-      "Gratitude saved (locally for now) – we’ll connect this to your journal soon.";
-    gratitudeSaveMessage.classList.remove("hidden");
+    if (gratitudeSaveMessage) {
+      gratitudeSaveMessage.textContent =
+        "Gratitude saved (locally for now) – we’ll connect this to your journal soon.";
+      gratitudeSaveMessage.classList.remove("hidden");
+    }
 
     // Reset the fields
     if (gratitude1Input) gratitude1Input.value = "";
@@ -164,10 +152,7 @@ if (gratitudeSaveBtn) {
   });
 }
 
-// -------------------- HELPERS --------------------
-
-// Try multiple possible paths for a category so we don't care exactly
-// how the JSON ended up being imported.
+// -------------------- FIREBASE HELPERS FOR STATEMENTS --------------------
 async function getCategorySnapshot(category) {
   const possiblePaths = [
     `statements/${category}`,
@@ -212,9 +197,8 @@ async function showRandomForCategory(category, emptyMessage) {
     const randomStatement = values[randomIndex];
     complimentDisplay.textContent = randomStatement;
     complimentDisplay.classList.remove("fade-in");
-    void complimentDisplay.offsetWidth; // magic reflow to restart animation
+    void complimentDisplay.offsetWidth; // restart animation
     complimentDisplay.classList.add("fade-in");
-
   } catch (error) {
     console.error("Error fetching statements:", error);
     complimentDisplay.textContent =
@@ -222,115 +206,46 @@ async function showRandomForCategory(category, emptyMessage) {
   }
 }
 
-// For gratitude we will *save* to one clear path,
-// but we can also *read* flexibly using getCategorySnapshot("gratitude")
-const gratitudeWriteRef = ref(database, "statements/gratitude");
+// -------------------- BUTTON BEHAVIOUR (BOOSTED VIEW) --------------------
 
-// Hide the gratitude panel + clear inputs
-function resetGratitudePanel() {
-  gratitudePanel.classList.add("hidden");
-  gratitudeInput1.value = "";
-  gratitudeInput2.value = "";
-  gratitudeInput3.value = "";
-}
+// Each category button just generates a random statement.
+// We removed the old inline gratitude panel logic.
 
-// Show success message for 3 seconds
-function showSuccess(message) {
-  successMessage.textContent = message;
-  successMessage.classList.remove("hidden");
-
-  setTimeout(() => {
-    successMessage.classList.add("hidden");
-  }, 3000);
-}
-
-// -------------------- BUTTON BEHAVIOUR --------------------
-
-// Courage, Positivity, Appreciation: generate affirmations
-courageButton.addEventListener("click", () => {
-  resetGratitudePanel();
-  showRandomForCategory(
-    "courage",
-    "No courage statements yet. Add some when you have a moment."
-  );
-});
-
-positivityButton.addEventListener("click", () => {
-  resetGratitudePanel();
-  showRandomForCategory(
-    "positivity",
-    "No positivity statements yet. Add some when you have a moment."
-  );
-});
-
-appreciationButton.addEventListener("click", () => {
-  resetGratitudePanel();
-  showRandomForCategory(
-    "appreciation",
-    "No appreciation statements yet. Add some when you have a moment."
-  );
-});
-
-// Gratitude: open/close panel
-gratitudeButton.addEventListener("click", () => {
-  gratitudePanel.classList.toggle("hidden");
-  successMessage.classList.add("hidden");
-});
-
-// Save 3 gratitude statements
-saveGratitudeButton.addEventListener("click", async () => {
-  const g1 = gratitudeInput1.value.trim();
-  const g2 = gratitudeInput2.value.trim();
-  const g3 = gratitudeInput3.value.trim();
-
-  if (!g1 || !g2 || !g3) {
-    alert("Please add three things you're grateful for.");
-    return;
-  }
-if (goToGratitudeButton) {
-  goToGratitudeButton.addEventListener("click", () => {
-    showView("gratitudeView");
+if (courageButton) {
+  courageButton.addEventListener("click", () => {
+    showRandomForCategory(
+      "courage",
+      "No courage statements yet. Add some when you have a moment."
+    );
   });
 }
 
-if (goToBoostedButton) {
-  goToBoostedButton.addEventListener("click", () => {
-    showView("boostedView");
+if (positivityButton) {
+  positivityButton.addEventListener("click", () => {
+    showRandomForCategory(
+      "positivity",
+      "No positivity statements yet. Add some when you have a moment."
+    );
   });
 }
 
-if (backFromGratitudeButton) {
-  backFromGratitudeButton.addEventListener("click", () => {
-    showView("homeView");
+if (appreciationButton) {
+  appreciationButton.addEventListener("click", () => {
+    showRandomForCategory(
+      "appreciation",
+      "No appreciation statements yet. Add some when you have a moment."
+    );
   });
 }
 
-if (backFromBoostedButton) {
-  backFromBoostedButton.addEventListener("click", () => {
-    showView("homeView");
+// Treat gratitudeButton as a fourth boost category for now.
+if (gratitudeButton) {
+  gratitudeButton.addEventListener("click", () => {
+    showRandomForCategory(
+      "gratitude",
+      "No gratitude statements yet. Add some when you have a moment."
+    );
   });
 }
 
-  try {
-    await Promise.all([
-      push(gratitudeWriteRef, g1),
-      push(gratitudeWriteRef, g2),
-      push(gratitudeWriteRef, g3),
-    ]);
-
-    resetGratitudePanel();
-    showSuccess("Your gratitude has been saved. We'll remind you later 💙");
-  } catch (error) {
-    console.error("Error saving gratitude statements:", error);
-    alert("Oops! Something went wrong saving your gratitude.");
-  }
-});
-
-// Gratitude Reminder: pull a random gratitude statement from Firebase
-gratitudeReminderButton.addEventListener("click", () => {
-  showRandomForCategory(
-    "gratitude",
-    "No gratitude statements saved yet. Add three to get started."
-  );
-});
 

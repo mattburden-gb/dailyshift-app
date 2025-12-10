@@ -4,21 +4,13 @@
     <meta charset="UTF-8" />
     <title>DailyShift – Mindset Statements</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- iOS PWA behaviour -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="DailyShift">
-    <link rel="apple-touch-icon" href="gb_logo.png">
 
-    <!-- Makes the site behave like an installable mobile app -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="DailyShift">
-
-<!-- App icon for iOS Home Screen -->
-<link rel="apple-touch-icon" href="gb_logo.png">
-
+    <!-- PWA / iOS app-like behaviour -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="DailyShift" />
+    <link rel="apple-touch-icon" href="gb_logo.png" />
 
     <!-- Growth Bridge typography: Montserrat (headings) + Roboto (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,163 +23,188 @@
     <!-- Page styles -->
     <link rel="stylesheet" href="index.css" />
   </head>
+
   <body>
-    <main class="page">
-<body>
-  <div class="page">
-    <div class="container">
-      <!-- App Header (shared across all views) -->
-      <header class="app-header">
-        <img
-          src="gb_logo.png"
-          alt="Growth Bridge logo"
-          class="brand-logo"
-        />
-        <h1>DailyShift</h1>
-        <p class="subtitle">
-          Gentle mindset shifts, whenever you need them.
-        </p>
-      </header>
+    <div class="page">
+      <div class="container">
+        <!-- App Header (shared across all views) -->
+        <header class="app-header">
+          <img
+            src="gb_logo.png"
+            alt="Growth Bridge logo"
+            class="brand-logo"
+          />
+          <h1>DailyShift</h1>
+          <p class="subtitle">
+            Gentle mindset shifts, whenever you need them.
+          </p>
+        </header>
 
-      <main class="views-wrapper">
-        <!-- HOME VIEW -->
-        <section id="homeView" class="view">
-          <div class="home-content">
-            <p class="home-greeting">
-              Welcome back.
-            </p>
-            <h2 class="home-question">
-              What would you like to do today?
-            </h2>
+        <main class="views-wrapper">
+          <!-- HOME VIEW -->
+          <section id="homeView" class="view">
+            <div class="home-content">
+              <p class="home-greeting">
+                Welcome back.
+              </p>
+              <h2 class="home-question">
+                What would you like to do today?
+              </h2>
 
-            <div class="home-actions">
-              <button id="goToGratitudeButton" class="btn-primary">
-                Be grateful
-              </button>
-              <button id="goToBoostedButton" class="btn-secondary">
-                Be boosted
-              </button>
+              <div class="home-actions">
+                <button id="goToGratitudeButton" class="btn-primary">
+                  Be grateful
+                </button>
+                <button id="goToBoostedButton" class="btn-secondary">
+                  Be boosted
+                </button>
+              </div>
             </div>
-          </div>
-        </section>
-
-      <!-- GRATITUDE VIEW -->
-      <section id="gratitudeView" class="view hidden">
-        <div class="gratitude-wrapper">
-          <header class="view-header">
-            <h2>Your Gratitude Journey</h2>
-            <p class="view-subtitle">
-              Start or continue your gratitude practice today.
-            </p>
-          </header>
-
-          <!-- Step 1: Choose what to do -->
-          <div class="gratitude-choice-card">
-            <p class="gratitude-choice-title">
-              What would you like to do today?
-            </p>
-            <div class="gratitude-choice-actions">
-              <button id="startGratitudeButton" class="btn-primary">
-                Add 3 things I’m grateful for
-              </button>
-              <button id="remindGratitudeButton" class="btn-secondary">
-                Be reminded of past gratitude
-              </button>
-            </div>
-          </div>
-
-          <!-- Option A: Input 3 gratitude statements -->
-          <section
-            id="gratitudeInputSection"
-            class="gratitude-panel hidden"
-            aria-label="Add today's gratitude"
-          >
-            <h3 class="gratitude-panel-title">
-              Today I am most grateful for…
-            </h3>
-            <p class="gratitude-panel-subtitle">
-              Take a moment to reflect on three things.
-            </p>
-
-            <div class="gratitude-field">
-              <label for="gratitude1">Gratitude 1</label>
-              <textarea
-                id="gratitude1"
-                rows="2"
-                placeholder="Something that made me smile…"
-              ></textarea>
-            </div>
-
-            <div class="gratitude-field">
-              <label for="gratitude2">Gratitude 2</label>
-              <textarea
-                id="gratitude2"
-                rows="2"
-                placeholder="A person I appreciate…"
-              ></textarea>
-            </div>
-
-            <div class="gratitude-field">
-              <label for="gratitude3">Gratitude 3</label>
-              <textarea
-                id="gratitude3"
-                rows="2"
-                placeholder="A moment I'm thankful for…"
-              ></textarea>
-            </div>
-
-            <button id="saveGratitudeButton" class="btn-primary full-width">
-              Save my gratitude
-            </button>
-
-            <p id="gratitudeSaveMessage" class="inline-message hidden"></p>
           </section>
 
-    <!-- Option B: Reminders placeholder (we'll wire data in next phase) -->
-    <section
-      id="gratitudeRemindSection"
-      class="gratitude-panel hidden"
-      aria-label="Gratitude reminders"
-    >
-      <h3 class="gratitude-panel-title">
-        Your recent gratitude
-      </h3>
-      <p class="gratitude-panel-subtitle">
-        Soon this space will show your most recent entries as gentle reminders.
-      </p>
+          <!-- GRATITUDE VIEW -->
+          <section id="gratitudeView" class="view hidden">
+            <div class="gratitude-wrapper">
+              <header class="view-header">
+                <h2>Your Gratitude Journey</h2>
+                <p class="view-subtitle">
+                  Start or continue your gratitude practice today.
+                </p>
+              </header>
 
-      <div class="gratitude-reminders-placeholder">
-        <p>No reminders just yet.</p>
-        <p class="small-muted">
-          Once you’ve saved a few gratitude entries, we’ll surface the last six
-          here.
-        </p>
+              <!-- Step 1: Choose what to do -->
+              <div class="gratitude-choice-card">
+                <p class="gratitude-choice-title">
+                  What would you like to do today?
+                </p>
+                <div class="gratitude-choice-actions">
+                  <button id="startGratitudeButton" class="btn-primary">
+                    Add 3 things I’m grateful for
+                  </button>
+                  <button id="remindGratitudeButton" class="btn-secondary">
+                    Be reminded of past gratitude
+                  </button>
+                </div>
+              </div>
+
+              <!-- Option A: Input 3 gratitude statements -->
+              <section
+                id="gratitudeInputSection"
+                class="gratitude-panel hidden"
+                aria-label="Add today's gratitude"
+              >
+                <h3 class="gratitude-panel-title">
+                  Today I am most grateful for…
+                </h3>
+                <p class="gratitude-panel-subtitle">
+                  Take a moment to reflect on three things.
+                </p>
+
+                <div class="gratitude-field">
+                  <label for="gratitude1">Gratitude 1</label>
+                  <textarea
+                    id="gratitude1"
+                    rows="2"
+                    placeholder="Something that made me smile…"
+                  ></textarea>
+                </div>
+
+                <div class="gratitude-field">
+                  <label for="gratitude2">Gratitude 2</label>
+                  <textarea
+                    id="gratitude2"
+                    rows="2"
+                    placeholder="A person I appreciate…"
+                  ></textarea>
+                </div>
+
+                <div class="gratitude-field">
+                  <label for="gratitude3">Gratitude 3</label>
+                  <textarea
+                    id="gratitude3"
+                    rows="2"
+                    placeholder="A moment I'm thankful for…"
+                  ></textarea>
+                </div>
+
+                <button id="saveGratitudeButton" class="btn-primary full-width">
+                  Save my gratitude
+                </button>
+
+                <p id="gratitudeSaveMessage" class="inline-message hidden"></p>
+              </section>
+
+              <!-- Option B: Reminders placeholder -->
+              <section
+                id="gratitudeRemindSection"
+                class="gratitude-panel hidden"
+                aria-label="Gratitude reminders"
+              >
+                <h3 class="gratitude-panel-title">
+                  Your recent gratitude
+                </h3>
+                <p class="gratitude-panel-subtitle">
+                  Soon this space will show your most recent entries as gentle reminders.
+                </p>
+
+                <div class="gratitude-reminders-placeholder">
+                  <p>No reminders just yet.</p>
+                  <p class="small-muted">
+                    Once you’ve saved a few gratitude entries, we’ll surface the last six
+                    here.
+                  </p>
+                </div>
+              </section>
+
+              <button id="backFromGratitudeButton" class="btn-tertiary back-link">
+                ← Back to home
+              </button>
+            </div>
+          </section>
+
+          <!-- BOOSTED VIEW -->
+          <section id="boostedView" class="view hidden">
+            <!-- Statement display -->
+            <p class="display">
+              <span id="compliment-display" class="display-text"></span>
+            </p>
+
+            <!-- Category buttons (Courage / Positivity / Appreciation / Gratitude) -->
+            <div class="actions">
+              <button id="courageButton" class="btn-primary">Courage</button>
+              <button id="positivityButton" class="btn-primary">Positivity</button>
+              <button id="appreciationButton" class="btn-primary">Appreciation</button>
+              <button id="gratitudeButton" class="btn-secondary">
+                Gratitude
+              </button>
+            </div>
+
+            <!-- Add-your-own form (we’ll enhance this later) -->
+            <form id="complimentForm" class="hidden">
+              <label for="complimentInput">Add your own statement:</label>
+              <input type="text" id="complimentInput" />
+              <button type="submit" class="btn-primary">Save</button>
+            </form>
+
+            <p id="successMessage" class="hidden"></p>
+
+            <button id="backFromBoostedButton" class="btn-tertiary">
+              ← Back to home
+            </button>
+          </section>
+        </main>
+
+        <!-- Footer: Powered by Growth Bridge -->
+        <footer class="app-footer">
+          <p>Powered by Growth Bridge</p>
+        </footer>
       </div>
-    </section>
-
-    <button id="backFromGratitudeButton" class="btn-tertiary back-link">
-      ← Back to home
-    </button>
-  </div>
-</section>
-
-      </main>
-
-      <!-- Footer: Powered by Growth Bridge -->
-      <footer class="app-footer">
-        <p>Powered by Growth Bridge</p>
-      </footer>
     </div>
-  </div>
-
-  <script src="index.js" type="module"></script>
-</body>
-
-    </main>
 
     <!-- Firebase + app logic -->
     <script src="index.js" type="module"></script>
   </body>
 </html>
+
 
 
