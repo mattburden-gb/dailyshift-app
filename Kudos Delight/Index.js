@@ -30,6 +30,74 @@ const gratitudeReminderButton = document.getElementById(
 
 const successMessage = document.getElementById("successMessage");
 
+// -------------------- VIEW SWITCHING --------------------
+
+// Get view containers
+const homeView = document.getElementById("homeView");
+const gratitudeView = document.getElementById("gratitudeView");
+const boostedView = document.getElementById("boostedView");
+
+// Get navigation buttons
+const goToGratitudeButton = document.getElementById("goToGratitudeButton");
+const goToBoostedButton = document.getElementById("goToBoostedButton");
+const backFromGratitudeButton = document.getElementById("backFromGratitudeButton");
+const backFromBoostedButton = document.getElementById("backFromBoostedButton");
+
+// Helper to show a single view
+function showView(viewId) {
+  console.log("showView called with:", viewId);
+
+  const views = document.querySelectorAll(".view");
+  views.forEach((v) => v.classList.add("hidden"));
+
+  const target = document.getElementById(viewId);
+  if (target) {
+    target.classList.remove("hidden");
+  } else {
+    console.warn("No view found with id:", viewId);
+  }
+}
+
+// Hook up navigation only if the elements exist
+if (goToGratitudeButton) {
+  goToGratitudeButton.addEventListener("click", () => {
+    console.log("Be grateful clicked");
+    showView("gratitudeView");
+  });
+} else {
+  console.warn("goToGratitudeButton not found");
+}
+
+if (goToBoostedButton) {
+  goToBoostedButton.addEventListener("click", () => {
+    console.log("Be boosted clicked");
+    showView("boostedView");
+  });
+} else {
+  console.warn("goToBoostedButton not found");
+}
+
+if (backFromGratitudeButton) {
+  backFromGratitudeButton.addEventListener("click", () => {
+    console.log("Back from gratitude clicked");
+    showView("homeView");
+  });
+} else {
+  console.warn("backFromGratitudeButton not found");
+}
+
+if (backFromBoostedButton) {
+  backFromBoostedButton.addEventListener("click", () => {
+    console.log("Back from boosted clicked");
+    showView("homeView");
+  });
+} else {
+  console.warn("backFromBoostedButton not found");
+}
+
+// Make sure we land on home when the app loads
+showView("homeView");
+
 // -------------------- HELPERS --------------------
 
 // Try multiple possible paths for a category so we don't care exactly
@@ -153,6 +221,29 @@ saveGratitudeButton.addEventListener("click", async () => {
     alert("Please add three things you're grateful for.");
     return;
   }
+if (goToGratitudeButton) {
+  goToGratitudeButton.addEventListener("click", () => {
+    showView("gratitudeView");
+  });
+}
+
+if (goToBoostedButton) {
+  goToBoostedButton.addEventListener("click", () => {
+    showView("boostedView");
+  });
+}
+
+if (backFromGratitudeButton) {
+  backFromGratitudeButton.addEventListener("click", () => {
+    showView("homeView");
+  });
+}
+
+if (backFromBoostedButton) {
+  backFromBoostedButton.addEventListener("click", () => {
+    showView("homeView");
+  });
+}
 
   try {
     await Promise.all([

@@ -33,71 +33,99 @@
   </head>
   <body>
     <main class="page">
-      <div class="container">
-        <!-- Brand block -->
-        <div class="brand">
-          <!-- Replace src with your actual Growth Bridge logo file -->
-          <img
-            src="web banner WHITE.png"
-            alt="Growth Bridge logo"
-            class="brand-logo"
-          />
-          <h1>DailyShift</h1>
-          <p class="subtitle">A little shift just needs a friendly nudge</p>
-        </div>
-
-        <!-- Display area for affirmations / reminders -->
-        <p class="display">
-          <span id="compliment-display" class="display-text"></span>
+<body>
+  <div class="page">
+    <div class="container">
+      <!-- App Header (shared across all views) -->
+      <header class="app-header">
+        <img
+          src="gb_logo.png"
+          alt="Growth Bridge logo"
+          class="brand-logo"
+        />
+        <h1>DailyShift</h1>
+        <p class="subtitle">
+          Gentle mindset shifts, whenever you need them.
         </p>
+      </header>
 
+      <main class="views-wrapper">
+        <!-- HOME VIEW -->
+        <section id="homeView" class="view">
+          <div class="home-content">
+            <p class="home-greeting">
+              Welcome back.
+            </p>
+            <h2 class="home-question">
+              What would you like to do today?
+            </h2>
 
-        <!-- Main action buttons -->
-        <div class="actions">
-          <button id="courageButton">Courage</button>
-          <button id="positivityButton">Positivity</button>
-          <button id="appreciationButton">Appreciation</button>
-          <button id="gratitudeButton">Gratitude</button>
-        </div>
-
-        <!-- Gratitude flow (shown/hidden via JS) -->
-        <section id="gratitudePanel" class="gratitude hidden">
-          <p class="gratitude-title">What are you grateful for today?</p>
-          <p class="gratitude-subtext">
-            Add three things you're grateful for. We'll save them so we can
-            remind you later.
-          </p>
-
-          <input
-            type="text"
-            id="gratitudeInput1"
-            class="gratitude-input"
-            placeholder="Grateful for #1"
-          />
-          <input
-            type="text"
-            id="gratitudeInput2"
-            class="gratitude-input"
-            placeholder="Grateful for #2"
-          />
-          <input
-            type="text"
-            id="gratitudeInput3"
-            class="gratitude-input"
-            placeholder="Grateful for #3"
-          />
-
-          <div class="gratitude-actions">
-            <button id="saveGratitudeButton">Save Gratitude</button>
-            <button id="gratitudeReminderButton" class="btn-secondary">
-              Gratitude Reminder
-            </button>
+            <div class="home-actions">
+              <button id="goToGratitudeButton" class="btn-primary">
+                Be grateful
+              </button>
+              <button id="goToBoostedButton" class="btn-secondary">
+                Be boosted
+              </button>
+            </div>
           </div>
         </section>
 
-        <!-- Success / feedback message -->
-        <p id="successMessage" class="hidden"></p>
-      </div>
+        <!-- GRATITUDE VIEW -->
+        <section id="gratitudeView" class="view hidden">
+          <div class="view-header">
+            <h2>Gratitude</h2>
+            <p>We’ll build your full gratitude flow here in the next phase.</p>
+          </div>
+
+          <button id="backFromGratitudeButton" class="btn-tertiary">
+            ← Back to home
+          </button>
+        </section>
+
+        <!-- BOOSTED VIEW (uses your existing functionality) -->
+        <section id="boostedView" class="view hidden">
+          <!-- Statement display -->
+          <p class="display">
+            <span id="compliment-display" class="display-text"></span>
+          </p>
+
+          <!-- Category buttons (Courage / Positivity / Appreciation / Gratitude) -->
+          <div class="actions">
+            <button id="courageButton" class="btn-primary">Courage</button>
+            <button id="positivityButton" class="btn-primary">Positivity</button>
+            <button id="appreciationButton" class="btn-primary">Appreciation</button>
+            <button id="gratitudeButton" class="btn-secondary">
+              Gratitude
+            </button>
+          </div>
+
+          <!-- Existing add-statement form -->
+          <form id="complimentForm" class="hidden">
+            <label for="complimentInput">Add your own statement:</label>
+            <input type="text" id="complimentInput" />
+            <button type="submit" class="btn-primary">Save</button>
+          </form>
+
+          <p id="successMessage" class="hidden"></p>
+
+          <button id="backFromBoostedButton" class="btn-tertiary">
+            ← Back to home
+          </button>
+        </section>
+
+      </main>
+
+      <!-- Footer: Powered by Growth Bridge -->
+      <footer class="app-footer">
+        <p>Powered by Growth Bridge</p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="index.js" type="module"></script>
+</body>
+
     </main>
 
     <!-- Firebase + app logic -->

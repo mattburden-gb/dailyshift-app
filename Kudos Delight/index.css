@@ -84,6 +84,109 @@ body {
   display: block;
 }
 
+/* Layout wrapper */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Container already styled – just make sure it fills nicely */
+.container {
+  max-width: 420px;
+  width: 100%;
+}
+
+/* Shared header */
+.app-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Views wrapper and individual views */
+.views-wrapper {
+  width: 100%;
+}
+
+.view {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Home-specific bits */
+.home-content {
+  text-align: center;
+}
+
+.home-greeting {
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.home-question {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+}
+
+.home-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Simple button variants, reusing your Growth Bridge system */
+.btn-primary,
+.btn-secondary,
+.btn-tertiary {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 48px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+/* Primary = solid white-on-navy (consistent with what you already had) */
+.btn-primary {
+  background-color: var(--gb-text-on-dark);
+  color: var(--gb-surface-dark);
+}
+
+/* Secondary = outline style, still white text */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--gb-text-on-dark);
+  border: 1px solid var(--gb-text-on-dark);
+}
+
+/* Tertiary = small back-style */
+.btn-tertiary {
+  background-color: transparent;
+  color: var(--gb-text-on-dark);
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+/* Simple footer */
+.app-footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
 
 .icon {
   font-size: 2.3rem;
