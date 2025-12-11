@@ -4,10 +4,11 @@ import {
   getDatabase,
   ref,
   get,
-  push
+  push,
+  query,
+  orderByKey,
+  limitToLast,
 } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
-
-
 
 // Firebase configuration (same as before)
 const firebaseConfig = {
@@ -15,14 +16,11 @@ const firebaseConfig = {
     "https://kudosdelight-792ca-default-rtdb.asia-southeast1.firebasedatabase.app/",
 };
 
-
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+
 // Store all gratitude lines under /statements/gratitude
 const gratitudeEntriesRef = ref(database, "statements/gratitude");
-
-
-
 
 // -------------------- DOM: STATEMENT DISPLAY & CATEGORY BUTTONS --------------------
 const complimentDisplay = document.getElementById("compliment-display");
@@ -39,8 +37,12 @@ const boostedView = document.getElementById("boostedView");
 
 const goToGratitudeButton = document.getElementById("goToGratitudeButton");
 const goToBoostedButton = document.getElementById("goToBoostedButton");
-const backFromGratitudeButton = document.getElementById("backFromGratitudeButton");
-const backFromBoostedButton = document.getElementById("backFromBoostedButton");
+const backFromGratitudeButton = document.getElementById(
+  "backFromGratitudeButton"
+);
+const backFromBoostedButton = document.getElementById(
+  "backFromBoostedButton"
+);
 
 // -------------------- VIEW SWITCHING --------------------
 function showView(viewId) {
@@ -109,13 +111,13 @@ const gratitude2Input = document.getElementById("gratitude2");
 const gratitude3Input = document.getElementById("gratitude3");
 const gratitudeSaveBtn = document.getElementById("saveGratitudeButton");
 const gratitudeSaveMessage = document.getElementById("gratitudeSaveMessage");
+
 const gratitudeRemindersPlaceholder = document.getElementById(
   "gratitudeRemindersPlaceholder"
 );
 const gratitudeRemindersContainer = document.getElementById(
   "gratitudeRemindersContainer"
 );
-
 
 function showGratitudePanel(panel) {
   if (!gratitudeInputSection || !gratitudeRemindSection) return;
@@ -130,33 +132,22 @@ function showGratitudePanel(panel) {
   }
 }
 
-if (startGratitudeButton) {
-  startGratitudeButton.addEventListener("click", () => {
-    showGratitudePanel("input");
-  });
-}
-
-if (remindGratitudeButton) {
-  remindGratitudeButton.addEventListener("click", () => {
-    showGratitudePanel("remind");
-    loadGratitudeReminders();
-  });
-}
-// Load the last 6 gratitude entries from Firebase
+// Load the last 6 gratitude entries from Firebase and render as a simple list
 async function loadGratitudeReminders() {
   if (!gratitudeRemindersContainer) return;
 
-  // Clear any previous list
+  console.log("[DailyShift] Loading gratitude reminders…");
   gratitudeRemindersContainer.innerHTML = "";
 
   try {
-    // Push keys are time-ordered, so orderByKey + limitToLast gives us latest entries
     const remindersQuery = query(
       gratitudeEntriesRef,
       orderByKey(),
       limitToLast(6)
     );
     const snapshot = await get(remindersQuery);
+
+    console.log("[DailyShift] Reminders snapshot exists?", snapshot.exists());
 
     if (!snapshot.exists()) {
       if (gratitudeRemindersPlaceholder) {
@@ -166,7 +157,9 @@ async function loadGratitudeReminders() {
     }
 
     const entries = Object.values(snapshot.val() || {});
-    const newestFirst = entries.reverse(); // so the newest is on top
+    const newestFirst = entries.reverse(); // newest at the top
+
+    console.log("[DailyShift] Loaded reminders:", newestFirst);
 
     if (gratitudeRemindersPlaceholder) {
       gratitudeRemindersPlaceholder.classList.add("hidden");
@@ -193,8 +186,20 @@ async function loadGratitudeReminders() {
   }
 }
 
-// For now, just validate and show a local confirmation.
-// We'll wire this to Firebase in the next phase.
+if (startGratitudeButton) {
+  startGratitudeButton.addEventListener("click", () => {
+    showGratitudePanel("input");
+  });
+}
+
+if (remindGratitudeButton) {
+  remindGratitudeButton.addEventListener("click", () => {
+    showGratitudePanel("remind");
+    loadGratitudeReminders();
+  });
+}
+
+// Save gratitude entries to Firebase
 if (gratitudeSaveBtn) {
   gratitudeSaveBtn.addEventListener("click", async () => {
     const g1 = gratitude1Input?.value.trim();
@@ -216,7 +221,9 @@ if (gratitudeSaveBtn) {
 
     try {
       // Save each gratitude line as its own child under /statements/gratitude
-      await Promise.all(entriesToSave.map((text) => push(gratitudeEntriesRef, text)));
+      await Promise.all(
+        entriesToSave.map((text) => push(gratitudeEntriesRef, text))
+      );
 
       // Clear fields
       if (gratitude1Input) gratitude1Input.value = "";
@@ -296,8 +303,6 @@ async function showRandomForCategory(category, emptyMessage) {
 // -------------------- BUTTON BEHAVIOUR (BOOSTED VIEW) --------------------
 
 // Each category button just generates a random statement.
-// We removed the old inline gratitude panel logic.
-
 if (courageButton) {
   courageButton.addEventListener("click", () => {
     showRandomForCategory(
@@ -334,5 +339,6 @@ if (gratitudeButton) {
     );
   });
 }
+
 
 

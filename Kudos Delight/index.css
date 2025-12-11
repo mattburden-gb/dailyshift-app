@@ -240,6 +240,23 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 0.9rem;
 }
+.gratitude-reminders-list {
+  margin-top: 0.75rem;
+}
+
+.gratitude-reminders-list-inner {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.gratitude-reminder-item {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
 
 .small-muted {
   font-size: 0.8rem;
