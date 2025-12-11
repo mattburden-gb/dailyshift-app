@@ -1,6 +1,13 @@
 // -------------------- FIREBASE SETUP --------------------
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
-import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+import {
+  getDatabase,
+  ref,
+  get,
+  push
+} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+
+
 
 // Firebase configuration (same as before)
 const firebaseConfig = {
@@ -8,8 +15,14 @@ const firebaseConfig = {
     "https://kudosdelight-792ca-default-rtdb.asia-southeast1.firebasedatabase.app/",
 };
 
+
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+// Store all gratitude lines under /statements/gratitude
+const gratitudeEntriesRef = ref(database, "statements/gratitude");
+
+
+
 
 // -------------------- DOM: STATEMENT DISPLAY & CATEGORY BUTTONS --------------------
 const complimentDisplay = document.getElementById("compliment-display");
@@ -96,6 +109,13 @@ const gratitude2Input = document.getElementById("gratitude2");
 const gratitude3Input = document.getElementById("gratitude3");
 const gratitudeSaveBtn = document.getElementById("saveGratitudeButton");
 const gratitudeSaveMessage = document.getElementById("gratitudeSaveMessage");
+const gratitudeRemindersPlaceholder = document.getElementById(
+  "gratitudeRemindersPlaceholder"
+);
+const gratitudeRemindersContainer = document.getElementById(
+  "gratitudeRemindersContainer"
+);
+
 
 function showGratitudePanel(panel) {
   if (!gratitudeInputSection || !gratitudeRemindSection) return;
@@ -119,17 +139,69 @@ if (startGratitudeButton) {
 if (remindGratitudeButton) {
   remindGratitudeButton.addEventListener("click", () => {
     showGratitudePanel("remind");
+    loadGratitudeReminders();
   });
+}
+// Load the last 6 gratitude entries from Firebase
+async function loadGratitudeReminders() {
+  if (!gratitudeRemindersContainer) return;
+
+  // Clear any previous list
+  gratitudeRemindersContainer.innerHTML = "";
+
+  try {
+    // Push keys are time-ordered, so orderByKey + limitToLast gives us latest entries
+    const remindersQuery = query(
+      gratitudeEntriesRef,
+      orderByKey(),
+      limitToLast(6)
+    );
+    const snapshot = await get(remindersQuery);
+
+    if (!snapshot.exists()) {
+      if (gratitudeRemindersPlaceholder) {
+        gratitudeRemindersPlaceholder.classList.remove("hidden");
+      }
+      return;
+    }
+
+    const entries = Object.values(snapshot.val() || {});
+    const newestFirst = entries.reverse(); // so the newest is on top
+
+    if (gratitudeRemindersPlaceholder) {
+      gratitudeRemindersPlaceholder.classList.add("hidden");
+    }
+
+    const list = document.createElement("ul");
+    list.className = "gratitude-reminders-list-inner";
+
+    newestFirst.forEach((text) => {
+      const li = document.createElement("li");
+      li.className = "gratitude-reminder-item";
+      li.textContent = text;
+      list.appendChild(li);
+    });
+
+    gratitudeRemindersContainer.appendChild(list);
+  } catch (error) {
+    console.error("Error loading gratitude reminders:", error);
+    if (gratitudeRemindersPlaceholder) {
+      gratitudeRemindersPlaceholder.classList.remove("hidden");
+      gratitudeRemindersPlaceholder.textContent =
+        "We couldn't load your reminders right now. Please try again later.";
+    }
+  }
 }
 
 // For now, just validate and show a local confirmation.
 // We'll wire this to Firebase in the next phase.
 if (gratitudeSaveBtn) {
-  gratitudeSaveBtn.addEventListener("click", () => {
+  gratitudeSaveBtn.addEventListener("click", async () => {
     const g1 = gratitude1Input?.value.trim();
     const g2 = gratitude2Input?.value.trim();
     const g3 = gratitude3Input?.value.trim();
 
+    // Make sure there's at least one line
     if (!g1 && !g2 && !g3) {
       if (gratitudeSaveMessage) {
         gratitudeSaveMessage.textContent =
@@ -139,16 +211,31 @@ if (gratitudeSaveBtn) {
       return;
     }
 
-    if (gratitudeSaveMessage) {
-      gratitudeSaveMessage.textContent =
-        "Gratitude saved (locally for now) – we’ll connect this to your journal soon.";
-      gratitudeSaveMessage.classList.remove("hidden");
-    }
+    // Only save non-empty entries
+    const entriesToSave = [g1, g2, g3].filter(Boolean);
 
-    // Reset the fields
-    if (gratitude1Input) gratitude1Input.value = "";
-    if (gratitude2Input) gratitude2Input.value = "";
-    if (gratitude3Input) gratitude3Input.value = "";
+    try {
+      // Save each gratitude line as its own child under /statements/gratitude
+      await Promise.all(entriesToSave.map((text) => push(gratitudeEntriesRef, text)));
+
+      // Clear fields
+      if (gratitude1Input) gratitude1Input.value = "";
+      if (gratitude2Input) gratitude2Input.value = "";
+      if (gratitude3Input) gratitude3Input.value = "";
+
+      if (gratitudeSaveMessage) {
+        gratitudeSaveMessage.textContent =
+          "Your gratitude has been saved – we’ll use these for future reminders 💙";
+        gratitudeSaveMessage.classList.remove("hidden");
+      }
+    } catch (error) {
+      console.error("Error saving gratitude entries:", error);
+      if (gratitudeSaveMessage) {
+        gratitudeSaveMessage.textContent =
+          "Oops! Something went wrong saving your gratitude. Please try again.";
+        gratitudeSaveMessage.classList.remove("hidden");
+      }
+    }
   });
 }
 
